@@ -1,0 +1,16 @@
+@if (User.Identity.IsAuthenticated)
+{
+  <ul class="navbar-nav">
+    <li>
+      <span class="navbar-text">Hello, @User.Identity.Name</span> &nbsp;
+      <a onclick="document.getElementById('logout_form').submit();" style="cursor: pointer;">Log out</a>
+    </li>
+  </ul>
+  <form asp-controller="Account" asp-action="Logout" method="post" id="logout_form"></form>
+}
+else
+{
+  <ul class="navbar-nav">
+    <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
+  </ul>
+}
