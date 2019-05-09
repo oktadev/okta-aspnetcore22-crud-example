@@ -4,29 +4,29 @@ using Okta.AspNetCore;
 
 namespace LiveMusicFinder.Controllers
 {
-    public class AccountController : Controller
+  public class AccountController : Controller
+  {
+    public IActionResult Login()
     {
-        public IActionResult Login()
-        {
-          if(!HttpContext.User.Identity.IsAuthenticated)
-          {
-            return Challenge(OktaDefaults.MvcAuthenticationScheme);
-          }
-          return RedirectToAction("Index", "Home");
-        }
+      if (!HttpContext.User.Identity.IsAuthenticated)
+      {
+        return Challenge(OktaDefaults.MvcAuthenticationScheme);
+      }
+      return RedirectToAction("Index", "Home");
+    }
 
-        public IActionResult Logout()
-        {
-          return new SignOutResult(new[]
-          {
+    public IActionResult Logout()
+    {
+      return new SignOutResult(new[]
+      {
             OktaDefaults.MvcAuthenticationScheme,
             CookieAuthenticationDefaults.AuthenticationScheme
           });
-        }
-
-        public IActionResult PostLogout()
-        {
-          return RedirectToAction("Index", "Home");
-        }
     }
+
+    public IActionResult PostLogout()
+    {
+      return RedirectToAction("Index", "Home");
+    }
+  }
 }

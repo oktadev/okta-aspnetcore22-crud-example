@@ -7,25 +7,13 @@ This is an application that allows users to enter live music shows that they kno
 Clone the repsository.
 
 ```sh
-git clone 
+git clone
 ```
-
-## Steps
-
-1. Create a model for the Live Music Show.
-2. `dotnet add package Microsoft.EntityFrameworkCore.SQLite`
-3. `ApplicationDbContext`
-4. `ConfigureServices()` method add `services.AddDbContext<ApplicationDbContext>(options => options.UseSQLite("Data Source=LiveMusicFinder.db"));`
-5. Add `ApplicationDbContext dbContext` to `Configure()` method signature
-6. Add `dbContext.Database.EnsureCreated();` to `Configure()` method
-7. `dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design`
-8. `dotnet aspnet-codegenerator controller -name LiveShowsController -async -m LiveMusicFinder.Models.LiveShow -dc LiveMusicFinder.Data.ApplicationDbContext -namespace Controllers -outDir Controllers -udl`
-9. `dotnet add package Okta.AspNetCore --version 1.1.5`
-10. Add the `AddAuthentication()` method with `OktaMvcOptions`
-
 
 ## Getting Help
 
+Please post any questions as comments on the [blog post](https://developer.okta.com/blog/2019/04/03/build-a-crud-app-with-aspnet-22-and-entity-framework), or visit our [Okta Developer Forums](https://devforum.okta.com/). You can also email developers@okta.com if would like to create a support ticket.
 
 ## License
+
 Apache 2.0 (see [LICENSE](LICENSE))

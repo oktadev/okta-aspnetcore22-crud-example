@@ -11,43 +11,48 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Artist)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Venue)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShowDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EnteredBy)
-            </th>
-            <th></th>
-        </tr>
+      <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Artist)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Venue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnteredBy)
+        </th>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Artist)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Venue)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShowDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnteredBy)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+      @foreach (var item in Model) {  
+      <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Artist)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnteredBy)
+        </td>
+        
+        <td>
+          <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+          @if (User.Identity.IsAuthenticated && item.EnteredBy == User.Identity.Name)
+          {
+            <span> |</span>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><span> |</span>
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+          }
+        </td>
+      </tr>
+      }
     </tbody>
 </table>
